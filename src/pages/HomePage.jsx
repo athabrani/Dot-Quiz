@@ -24,15 +24,15 @@ export default function Quiz() {
   } = useQuizState();
 
   return (
-    <div className="min-h-screen p-6">
-      <header className="max-w-4xl mx-auto flex justify-between items-center mb-6">
+    <div className="min-h-screen">
+      {/* <header className="max-w-4xl mx-auto flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">DOT Quiz App</h1>
         <div className="text-sm text-gray-700">
           {user ? `Hai, ${user.username}` : "Belum login"}
         </div>
-      </header>
+      </header> */}
 
-      <main className="max-w-4xl mx-auto">
+      <main className="mx-auto">
         {!user &&
         (<div className="fixed inset-0 z-50">
          <LoginView onLogin={login} />
@@ -44,6 +44,7 @@ export default function Quiz() {
             settings={settings}
             fetchQuestions={fetchQuestions}
             resetSavedState={resetSavedState}
+            onLogout={logout}
           />
         )}
         {user && status === "loading" && <div>Memuat soal...</div>}
@@ -70,9 +71,9 @@ export default function Quiz() {
         )}
       </main>
 
-      <footer className="max-w-4xl mx-auto mt-10 text-center text-sm text-gray-500">
+      {/* <footer className="max-w-4xl mx-auto mt-10 text-center text-sm text-gray-500">
         Built with OpenTDB API. State disimpan secara lokal di browser (localStorage).
-      </footer>
+      </footer> */}
     </div>
   );
 }

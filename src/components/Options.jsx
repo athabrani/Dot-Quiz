@@ -24,14 +24,14 @@ export default function QuizFeatures() {
      <section className="bg-gradient-to-t from-white to-green-100 py-16">
       <div className="max-w-5xl mx-auto px-6">
         <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg">
-          <div className="bg-green-500 text-white md:w-1/3 flex flex-col justify-center items-center p-8 rounded-l-2xl">
+          <div className="bg-green-400 text-white md:w-1/3 flex flex-col justify-center items-center p-8 md:rounded-l-2xl">
             <h2 className="text-2xl font-bold mb-2">Prove yourself worthy!</h2>
             <p className="text-sm text-green-100 text-center">
               Play, Challenge, and Learn
             </p>
           </div>
 
-        <div className="flex flex-col w-full md:w-2/3 p-6 gap-4 bg-white rounded-r-2xl">
+        <div className="flex flex-col w-full md:w-2/3 p-6 gap-4 bg-white rounded-2xl">
           {options.map((opt, index) => (
             <div
               key={index}

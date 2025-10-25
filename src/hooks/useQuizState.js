@@ -1,7 +1,16 @@
 import { useState, useEffect } from "react";
 import shuffleArray from "../utils/shuffleArray";
 
-const API_URL = "https://opentdb.com/api.php?amount=5&type=multiple";
+const BASE_URL = "https://opentdb.com/api.php?amount=5&type=multiple";
+
+// Pemetaan kategori lokal → kategori API OpenTDB
+const CATEGORY_MAP = {
+  football: 21, // Sports
+  science: 17, // Science & Nature
+  movie: 11, // Film
+  music: 12, // Music
+  fashion: 9, // General 
+};
 
 export default function useQuizState() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
@@ -11,7 +20,7 @@ export default function useQuizState() {
   const [answers, setAnswers] = useState(JSON.parse(localStorage.getItem("answers")) || []);
   const [timeLeft, setTimeLeft] = useState(Number(localStorage.getItem("timer")) || 60);
 
-  // Persist state
+  // Persist state ke localStorage
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("status", status);
@@ -21,7 +30,7 @@ export default function useQuizState() {
     localStorage.setItem("timer", timeLeft);
   }, [user, status, questions, currentIndex, answers, timeLeft]);
 
-  // Timer
+  // Timer logic
   useEffect(() => {
     if (status === "running" && timeLeft > 0) {
       const timer = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
@@ -50,19 +59,35 @@ export default function useQuizState() {
     setStatus("idle");
   };
 
-  const fetchQuestions = async () => {
+  /**
+   * Fetch questions dari API berdasarkan kategori
+   * @param {string} category - nama kategori, contoh: "science", "music", "football"
+   */
+  const fetchQuestions = async (category) => {
     setStatus("loading");
-    const res = await fetch(API_URL);
-    const data = await res.json();
-    const shuffled = data.results.map((q) => ({
-      ...q,
-      options: shuffleArray([...q.incorrect_answers, q.correct_answer]),
-    }));
-    setQuestions(shuffled);
-    setStatus("running");
-    setCurrentIndex(0);
-    setAnswers([]);
-    setTimeLeft(60);
+
+    // cari ID kategori di map
+    const categoryId = CATEGORY_MAP[category?.toLowerCase()];
+    const url = categoryId ? `${BASE_URL}&category=${categoryId}` : BASE_URL;
+
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+
+      const shuffled = data.results.map((q) => ({
+        ...q,
+        options: shuffleArray([...q.incorrect_answers, q.correct_answer]),
+      }));
+
+      setQuestions(shuffled);
+      setStatus("running");
+      setCurrentIndex(0);
+      setAnswers([]);
+      setTimeLeft(60);
+    } catch (error) {
+      console.error("Error fetching quiz:", error);
+      setStatus("idle");
+    }
   };
 
   const selectAnswer = (answer) => {

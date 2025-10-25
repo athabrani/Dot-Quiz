@@ -13,7 +13,7 @@ export default function Hero() {
           </h1>
           <p className="text-gray-600 text-lg mb-8">
             DOT Quiz App is a daily trivia and quiz platform that brings 
-            exciting challenges and rewards every day. Test your knowledge and earn your bonus!
+            exciting challenges and rewards every day. Test your knowledge and challenge others.
           </p>
           <a
             href="/quiz"
