@@ -3,7 +3,7 @@ import shuffleArray from "../utils/shuffleArray";
 
 const BASE_URL = "https://opentdb.com/api.php?amount=5&type=multiple";
 
-// Pemetaan kategori lokal → kategori API OpenTDB
+
 const CATEGORY_MAP = {
   football: 21, // Sports
   science: 17, // Science & Nature
@@ -59,14 +59,11 @@ export default function useQuizState() {
     setStatus("idle");
   };
 
-  /**
-   * Fetch questions dari API berdasarkan kategori
-   * @param {string} category - nama kategori, contoh: "science", "music", "football"
-   */
+
   const fetchQuestions = async (category) => {
     setStatus("loading");
 
-    // cari ID kategori di map
+ 
     const categoryId = CATEGORY_MAP[category?.toLowerCase()];
     const url = categoryId ? `${BASE_URL}&category=${categoryId}` : BASE_URL;
 
@@ -102,6 +99,45 @@ export default function useQuizState() {
 
   const finishQuiz = () => setStatus("finished");
 
+  const restartQuiz = async () => {
+  if (!questions || questions.length === 0) return;
+
+  // Cari kategori dari pertanyaan sebelumnya
+  const prevCategory = questions[0]?.category;
+  let categoryId = null;
+
+  // Temukan key dari CATEGORY_MAP yang cocok dengan kategori sebelumnya
+  for (const [key, value] of Object.entries(CATEGORY_MAP)) {
+    if (value === CATEGORY_MAP[key] && prevCategory.toLowerCase().includes(key)) {
+      categoryId = value;
+      break;
+    }
+  }
+
+  // Jika tidak ketemu, ambil soal random (default)
+  const url = categoryId ? `${BASE_URL}&category=${categoryId}` : BASE_URL;
+
+  try {
+    setStatus("loading");
+    const res = await fetch(url);
+    const data = await res.json();
+
+    const shuffled = data.results.map((q) => ({
+      ...q,
+      options: shuffleArray([...q.incorrect_answers, q.correct_answer]),
+    }));
+
+    setQuestions(shuffled);
+    setAnswers([]);
+    setCurrentIndex(0);
+    setTimeLeft(60);
+    setStatus("running");
+  } catch (error) {
+    console.error("Error restarting quiz:", error);
+    setStatus("idle");
+  }
+};
+
   return {
     user,
     status,
@@ -111,6 +147,7 @@ export default function useQuizState() {
     fetchQuestions,
     selectAnswer,
     finishQuiz,
+    restartQuiz,
     settings: {},
     questions,
     currentIndex,

@@ -4,6 +4,7 @@ import LoginView from "../components/LoginView";
 import SetupView from "../components/SetupView";
 import QuizView from "../components/QuizView";
 import ResultView from "../components/ResultView";
+import Loading from "../components/LoadingPage";
 
 export default function Quiz() {
   const {
@@ -15,6 +16,7 @@ export default function Quiz() {
     fetchQuestions,
     selectAnswer,
     finishQuiz,
+    restartQuiz,
     settings,
     questions,
     currentIndex,
@@ -25,13 +27,6 @@ export default function Quiz() {
 
   return (
     <div className="min-h-screen">
-      {/* <header className="max-w-4xl mx-auto flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">DOT Quiz App</h1>
-        <div className="text-sm text-gray-700">
-          {user ? `Hai, ${user.username}` : "Belum login"}
-        </div>
-      </header> */}
-
       <main className="mx-auto">
         {!user &&
         (<div className="fixed inset-0 z-50">
@@ -47,7 +42,7 @@ export default function Quiz() {
             onLogout={logout}
           />
         )}
-        {user && status === "loading" && <div>Memuat soal...</div>}
+        {user && status === "loading" && <Loading />}
         {user && status === "running" && (
           <QuizView
             user={user}
@@ -65,15 +60,11 @@ export default function Quiz() {
             questions={questions}
             answers={answers}
             settings={settings}
-            fetchQuestions={fetchQuestions}
+            restartQuiz={restartQuiz}
             resetSavedState={resetSavedState}
           />
         )}
       </main>
-
-      {/* <footer className="max-w-4xl mx-auto mt-10 text-center text-sm text-gray-500">
-        Built with OpenTDB API. State disimpan secara lokal di browser (localStorage).
-      </footer> */}
     </div>
   );
 }

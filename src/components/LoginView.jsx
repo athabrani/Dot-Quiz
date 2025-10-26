@@ -5,15 +5,15 @@ export default function LoginView({ onLogin }) {
   const [username, setUsername] = useState("");
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-[url('/bg-wave.jpg')] bg-[length:110%_110%] bg-cover bg-center bg-no-repeat">
-      {/* Logo di pojok kiri atas */}
+    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-emerald-400 via-teal-300 to-green-200 bg-center bg-no-repeat">
+     
       <a
         href="/"
         className="absolute top-12 left-12 flex items-center space-x-2 hover:opacity-80 transition"
       >
         <img src="/edu.png" alt="DOT Quiz Logo" className="w-8 h-8" />
         <span className="text-md font-extrabold text-gray-800 tracking-wide">
-          <span className="text-green-400">DOT</span> Quiz
+          <span className="text-white">DOT</span> Quiz
         </span>
       </a>
 

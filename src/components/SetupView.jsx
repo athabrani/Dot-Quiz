@@ -18,8 +18,8 @@ export default function SetupView({
   const getInitial = (name) => (!name ? "?" : name.trim().charAt(0).toUpperCase());
 
   // Progress dummy (bisa diganti dengan real data)
-  const totalTasks = 14;
-  const completedTasks = settings?.progress || 9;
+  const totalTasks = 7;
+  const completedTasks = settings?.progress || 1;
   const progressPercent = Math.min((completedTasks / totalTasks) * 100, 100);
 
   return (
@@ -28,7 +28,6 @@ export default function SetupView({
       <div className="absolute top-20 left-10 w-40 h-40 bg-white/20 rounded-full blur-3xl"></div>
       <div className="absolute bottom-10 right-10 w-60 h-60 bg-white/10 rounded-full blur-2xl"></div>
 
-      {/* Header */}
       <header className="w-11/12 max-w-5xl flex justify-between items-center mb-10 relative z-10">
         <div className="flex items-center gap-4">
           <div className="w-14 h-14 rounded-full bg-white/30 backdrop-blur-md border-2 border-white flex items-center justify-center shadow-lg">
@@ -47,13 +46,13 @@ export default function SetupView({
         </div>
         <button
           onClick={onLogout}
-          className="bg-white/25 hover:bg-white/40 text-white px-5 py-2 rounded-lg font-semibold transition shadow-md backdrop-blur-md"
+          className="bg-red-500/70 hover:bg-red-600/90 text-white px-5 py-2 rounded-lg font-semibold transition shadow-md backdrop-blur-md"
         >
           Logout
         </button>
       </header>
 
-      {/* Daily Task */}
+ 
       <section className="w-11/12 max-w-5xl bg-white/75 backdrop-blur-lg rounded-2xl p-6 shadow-lg mb-8 border border-white/40 transition hover:shadow-xl">
         <div className="flex justify-between items-center mb-3">
           <h2 className="text-lg font-bold text-emerald-900">Daily Task</h2>
@@ -62,7 +61,7 @@ export default function SetupView({
           </span>
         </div>
 
-        {/* Progress bar */}
+
         <div className="w-full bg-gray-200 h-3 rounded-full overflow-hidden mb-3 shadow-inner">
           <div
             className="bg-gradient-to-r from-emerald-500 to-teal-400 h-3 rounded-full transition-all duration-700"
@@ -76,7 +75,7 @@ export default function SetupView({
         </div>
       </section>
 
-      {/* Quiz Categories */}
+
       <section className="w-11/12 max-w-5xl mb-8 relative z-10">
         <div className="mb-4 text-left">
           <h3 className="text-xl font-bold text-white drop-shadow-md">Pick a Category</h3>
@@ -104,10 +103,9 @@ export default function SetupView({
         </div>
       </section>
 
-      {/* More Games */}
       <section className="w-11/12 max-w-5xl mb-10 relative z-10">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-bold text-white drop-shadow-md">More Games</h3>
+          <h3 className="text-xl font-bold text-white drop-shadow-md">More Quiz</h3>
         </div>
         <div className="grid md:grid-cols-2 gap-6">
           {[
