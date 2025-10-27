@@ -5,11 +5,11 @@ const BASE_URL = "https://opentdb.com/api.php?amount=5&type=multiple";
 
 
 const CATEGORY_MAP = {
-  football: 21, // Sports
-  science: 17, // Science & Nature
-  movie: 11, // Film
-  music: 12, // Music
-  fashion: 9, // General 
+  football: 21, 
+  science: 17, 
+  movie: 11, 
+  music: 12, 
+  animal: 27, 
 };
 
 export default function useQuizState() {
@@ -20,7 +20,6 @@ export default function useQuizState() {
   const [answers, setAnswers] = useState(JSON.parse(localStorage.getItem("answers")) || []);
   const [timeLeft, setTimeLeft] = useState(Number(localStorage.getItem("timer")) || 60);
 
-  // Persist state ke localStorage
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("status", status);
@@ -30,7 +29,7 @@ export default function useQuizState() {
     localStorage.setItem("timer", timeLeft);
   }, [user, status, questions, currentIndex, answers, timeLeft]);
 
-  // Timer logic
+  
   useEffect(() => {
     if (status === "running" && timeLeft > 0) {
       const timer = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
@@ -102,7 +101,7 @@ export default function useQuizState() {
   const restartQuiz = async () => {
   if (!questions || questions.length === 0) return;
 
-  // Cari kategori dari pertanyaan sebelumnya
+
   const prevCategory = questions[0]?.category;
   let categoryId = null;
 
@@ -114,7 +113,6 @@ export default function useQuizState() {
     }
   }
 
-  // Jika tidak ketemu, ambil soal random (default)
   const url = categoryId ? `${BASE_URL}&category=${categoryId}` : BASE_URL;
 
   try {

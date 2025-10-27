@@ -46,9 +46,6 @@ export default function QuizFeatures() {
                   <p className="text-sm text-gray-500">{opt.description}</p>
                 </div>
               </div>
-              {/* <div className="flex items-center gap-1 text-green-500 font-medium">
-                Start Now <ArrowRight className="w-4 h-4" />
-              </div> */}
             </div>
           ))}
         </div>

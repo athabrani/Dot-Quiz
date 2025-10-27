@@ -30,10 +30,10 @@ export default function HowItWorks() {
           How It Works
         </h2>
         <p className="text-gray-500 mb-12">
-          Learn how you can join, play, and win — it’s quick and easy!
+          Learn how you can join, play, and win - it's quick and easy!
         </p>
 
-        {/* Steps Section */}
+
         <div className="grid md:grid-cols-3 gap-8">
           {steps.map((step, index) => (
             <div

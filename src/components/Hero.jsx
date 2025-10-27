@@ -6,7 +6,6 @@ export default function Hero() {
     <section className="bg-gradient-to-b from-white to-green-100 py-20">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
         
-        {/* Left: Text Section */}
         <div className="md:w-1/2 text-center md:text-left">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
             Daily Quiz, Daily Insight - <span className="text-green-400">Play Today!</span>
@@ -24,7 +23,6 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Right: Illustration */}
         <div className="md:w-1/2 flex justify-center">
           <img
             src="/Hands.png"

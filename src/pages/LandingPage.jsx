@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Hero from "../components/Hero";
 import NavbarDemo from "../components/Home-nav";
 import QuizFeatures from "../components/Options";
-import HowItWorks from "@/components/Howitworks";
+import HowItWorks from "../components/Howitworks";
 
 export default function LandingPage() {
   const navigate = useNavigate();

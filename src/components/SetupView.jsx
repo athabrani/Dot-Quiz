@@ -17,14 +17,14 @@ export default function SetupView({
 
   const getInitial = (name) => (!name ? "?" : name.trim().charAt(0).toUpperCase());
 
-  // Progress dummy (bisa diganti dengan real data)
+
   const totalTasks = 7;
-  const completedTasks = settings?.progress || 1;
+  const completedTasks = settings?.progress || 7;
   const progressPercent = Math.min((completedTasks / totalTasks) * 100, 100);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-emerald-400 via-teal-300 to-green-200 flex flex-col items-center py-10 font-sans text-gray-900 relative overflow-hidden">
-      {/* Decorative Circles */}
+
       <div className="absolute top-20 left-10 w-40 h-40 bg-white/20 rounded-full blur-3xl"></div>
       <div className="absolute bottom-10 right-10 w-60 h-60 bg-white/10 rounded-full blur-2xl"></div>
 
@@ -87,7 +87,7 @@ export default function SetupView({
           {[
             { name: "Football", icon: "⚽" },
             { name: "Science", icon: "🔬" },
-            { name: "Fashion", icon: "👗" },
+            { name: "Animal", icon: "🐾" },
             { name: "Movie", icon: "🎬" },
             { name: "Music", icon: "🎵" },
           ].map((item, index) => (
@@ -136,16 +136,6 @@ export default function SetupView({
           ))}
         </div>
       </section>
-
-      {/* Bottom Buttons */}
-      <div className="flex gap-4 relative z-10">
-        <button
-          onClick={resetSavedState}
-          className="bg-white/25 hover:bg-white/40 text-white font-semibold px-5 py-2 rounded-lg shadow-md backdrop-blur-md transition"
-        >
-          Reset Progress
-        </button>
-      </div>
     </div>
   );
 }

@@ -14,7 +14,6 @@ export default function ResultView({ questions, answers, restartQuiz, resetSaved
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-emerald-400 via-teal-300 to-green-200 px-6 py-12 font-sans">
       <div className="w-full max-w-lg bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl p-8 text-center border border-white/30">
-        {/* Judul */}
         <h2 className="text-3xl font-bold text-gray-800 mb-2 drop-shadow-sm">
            Hasil Kuis Kamu
         </h2>
@@ -22,7 +21,6 @@ export default function ResultView({ questions, answers, restartQuiz, resetSaved
           Selesai! Berikut hasil performa kamu dalam kuis ini:
         </p>
 
-        {/* Skor utama */}
         <div className="flex flex-col items-center mb-8">
           <div
             className={`text-6xl font-extrabold ${scoreColor} drop-shadow-md animate-pulse`}
@@ -32,7 +30,6 @@ export default function ResultView({ questions, answers, restartQuiz, resetSaved
           <p className="text-gray-700 text-sm mt-2 font-medium">Skor Akhir</p>
         </div>
 
-        {/* Statistik */}
         <div className="grid grid-cols-3 gap-4 mb-8 text-gray-700">
           <div className="bg-white/70 p-4 rounded-2xl shadow-sm border border-white/40">
             <div className="text-sm font-medium text-gray-500">Total Soal</div>
@@ -52,7 +49,6 @@ export default function ResultView({ questions, answers, restartQuiz, resetSaved
           </div>
         </div>
 
-        {/* Tombol aksi */}
         <div className="flex justify-center gap-4">
           <button
             onClick={restartQuiz}

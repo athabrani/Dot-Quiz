@@ -33,13 +33,11 @@ export default function QuizView({
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-emerald-400 via-teal-300 to-green-200 font-sans text-gray-800 px-4 py-8 relative">
-      {/* Header Timer */}
       <div className="text-center mb-6">
         <div className="text-teal-800 text-sm font-medium mb-1">Waktu tersisa</div>
         <div className="text-2xl font-bold text-white drop-shadow-sm">{timeLeft}s</div>
       </div>
 
-      {/* Progress Bar */}
       <div className="w-full max-w-2xl mb-6">
         <div className="flex justify-between text-sm mb-1 text-teal-900 font-medium">
           <span>
@@ -55,13 +53,11 @@ export default function QuizView({
         </div>
       </div>
 
-      {/* Kartu Pertanyaan */}
       <div className="w-full max-w-2xl bg-white/80 backdrop-blur-md rounded-2xl shadow-lg p-8 text-center border border-white/40">
         <h2 className="text-lg font-semibold mb-6 text-gray-800 leading-relaxed">
           {decodeHtml(current.question)}
         </h2>
 
-        {/* Pilihan Jawaban */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {options.map((opt, idx) => (
             <button
@@ -78,7 +74,6 @@ export default function QuizView({
         </div>
       </div>
 
-      {/* Tombol Akhiri */}
       <div className="flex justify-center mt-8">
         <button
           onClick={() => setShowConfirm(true)}
@@ -88,17 +83,16 @@ export default function QuizView({
         </button>
       </div>
 
-      {/* Modal Konfirmasi */}
       {showConfirm && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white/90 rounded-2xl shadow-xl p-8 text-center max-w-sm w-full border border-white/30 backdrop-blur-md">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">
               Apakah Anda yakin ingin menyelesaikan kuis?
             </h3>
-            <p className="text-sm text-gray-600 mb-6">
+            <p className="text-sm text-gray-600 mb-6">  
               Setelah dikonfirmasi, jawaban tidak dapat diubah.
             </p>
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-center gap-4"> 
               <button
                 onClick={() => setShowConfirm(false)}
                 className="px-5 py-2 rounded-lg bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium transition"
